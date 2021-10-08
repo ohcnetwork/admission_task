@@ -1,58 +1,41 @@
-# admission_task
+# admission_task | priority list
 
 ## Specification
 
-1.  The app can be run in the console with ./agenda.  
+1.  The app can be run in the console with ./plist.  
       
     
-2.  The app should read from and write to a agenda.txt text file. Each reminder occupies a single line in this file. Here is an example file that has 2 tasks.  
-      
-x 15:20 first task
+2.  The app should read from and write to a list.txt text file. Each item occupies a single line in this file. Here is an example file that has 2 items.  
+        
+    x 5 first task
 
-13:20 12:30 another task
+    o 2 yet another task
 
-13:20 15:30 yet another task
+3. Each line represents the following
+    o 2 yet another task
 
+    i.  the letter x denotes the item has been completed the letter o denotes the task as incomplete
+        
+    ii.  2 denotes the priority of the item
+
+    iii. “yet another task” denotes the details of the agenda
+    
+4.  Priority can be any integer greater than or equal to 1. 1 being the highest priority
+   
+5.  When a new item is created with the priority of an existing item, the priority of the existing item is incremented. 
+   
+6. There shall never be 2 incomplete tasks with the same priority 
+   
+The application must open the file list.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:  
   
-
-When a task is completed, the time of completion would be added to the agenda.txt file for the respective entry
-
-3.    
-    
-
-13:20 12:30 another task
-
-1.  the time 13:20 denotes the time of completion of the task
-    
-2.  the time 12:30 denotes the deadline for the task
-    
-3.  “another task” denotes the details of the agenda
-    
-
-x 15:20 first task
-
-4.  the letter x denotes that the task has not been completed
-    
-5.  the time 15:20 denotes the deadline for the task
-    
-6.  “first task” denotes the details of the agenda
-    
-
-4.  The time when the task is marked as completed is recorded in the hh:mm 24 hour format (ISO 8601). For example, the time 4:05 AM is represented as 04:05 and the time 5:25 PM is represented as 17:25.  
-      
-    
-
-The application must open the file agenda.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:  
-  
+```
 $ cd /path/to/plans
 
-$ /path/to/apps/agenda ls
-
-5.    
+$ /path/to/apps/plist ls
+```
       
     The application should look for the text files in /path/to/plans, since that is the user’s current directory.  
       
-    
 
 ## Usage
 
@@ -60,86 +43,93 @@ $ /path/to/apps/agenda ls
 
 Executing the command without any arguments, or with a single argument help prints the CLI usage.
 
-$ ./agenda help
+$ ./plist help
 
 Usage :-
+```
+$ ./plist 2 hello world # Add a new item with priority 2 and text "hello world" to the list
 
-$ ./agenda add # Add a new task to the agenda; This invokes a multiline input to input the task and the time for the task
+$ ./plist ls # Show incomplete priority list items sorted by priority in ascending order
 
-$ ./agenda ls # Show remaining tasks
+$ ./plist del PRIORITY_NUMBER # Delete the incomplete item with the given PRIORITY_NUMBER
 
-$ ./agenda del NUMBER # Delete a task
+$ ./plist done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
 
-$ ./agenda done NUMBER # Mark a task as completed now.
+$ ./plist help # Show usage
 
-$ ./agenda help # Show usage
-
-$ ./agenda report # Statistics
-
+$ ./plist report # Statistics
+```
   
 
-### 2. List all pending tasks
+### 2. List all pending items
 
-Use the ls command to see all the tasks that are not yet complete. The task with the closest deadline should be displayed first.
+Use the ls command to see all the items that are not yet complete, in ascending order of priority. 
 
-$ ./agenda ls
+$ ./plist ls
 
 [2] change light bulb
 
-[1] water the plants
+[5] water the plants
 
   
 
-### 3. Add a new task
+### 3. Add a new item
 
-Use the add command. The text of the task should be enclosed within double quotes (otherwise only the first word is considered as the task text, and the remaining words are treated as different arguments).
+Use the add command. The text of the task should be enclosed within double quotes (otherwise only the first word is considered as the item text, and the remaining words are treated as different arguments).
 
-$ ./agenda add "the thing i need to do"
+$ ./plist add 5 "the thing i need to do"
 
-Added task: "the thing i need to do"
-
-  
-
-### 4. Delete a task
-
-Use the del command to remove a task by its number.
-
-$ ./agenda del 3
-
-Deleted task #3
+Added task: "the thing i need to do" with priority 5
 
   
 
-Attempting to delete a non-existent task should display an error message.
+### 4. Delete an item
 
-$ ./agenda del 5
+Use the del command to remove an item by its number.
 
-Error: task #5 does not exist. Nothing deleted.
+$ ./plist del 3
+
+Deleted item with priority 3
+
+  
+
+Attempting to delete a non-existent item should display an error message.
+
+$ ./plist del 5
+
+Error: item with priority 5 does not exist. Nothing deleted.
 
   
 
 ### 5. Mark a task as completed
 
-Use the done command to mark a task as completed by its number.
+Use the done command to mark an item as completed by its priority number.
 
-$ ./agenda done 1
+$ ./plist done 1
 
-Marked task #1 as done.
+Marked item as done.
 
   
 
-Attempting to mark a non-existed task as completed will display an error message.
+Attempting to mark a non-existed item as completed will display an error message.
 
-$ ./agenda done 5
+$ ./plist done 5
 
-Error: task #5 does not exist.
+Error: no incomplete item with priority 5 exists.
 
   
 
 ### 6. Generate a report
 
-Use the report command to see the latest tally of pending and completed tasks.
+Show the number of complete and incomplete items in the list. and the complete and incomplete items grouped together.
 
-$ ./agenda report
+$ ./plist report
 
-yyyy-mm-dd Pending : 1 Completed : 4
+Pending : 2
+1 this is a pending task
+4 this is a pending task with priority 4
+
+Completed : 3
+completed task
+another completed task
+yet another completed task
