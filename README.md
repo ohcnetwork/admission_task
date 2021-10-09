@@ -1,5 +1,7 @@
 # admission_task | priority list
 
+Build a CLI Priority List that maintains a list  of items to be done and in the order of their priorities. The app would use a file to store the persistent data.
+
 ## Specification
 
 1.  The app can be run in the console with ./plist.  
