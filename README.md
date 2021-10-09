@@ -2,7 +2,7 @@
 
 Thanks for applying to the Global Digital Corps!
 
-In this step we want to see how you implement a command-line (CLI) program that lets you manage **ADD_DESCRIPTION_FOR_TASK**
+In this step we want to see how you implement a command-line (CLI) program that lets you manage your tasks.
 
 The specification for this problem is written down as tests. Since we haven’t actually implemented anything, the tests are currently failing. You have to solve the problem by implementing the application and getting all the tests to pass.
 
@@ -73,26 +73,49 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 
 ## Specification
 
-1.  The app can be run in the console with ./plist.
+1.  The app can be run in the console with `./todo`.
 
-2.  The app should read from and write to a list.txt text file. Each item occupies a single line in this file. Here is an example file that has 2 items.
-    ```
-    x 5 first task
-    o 2 yet another task
-    ```
-3.  Each line represents the following
+2.  The app should read from and write to a tasks.txt text file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
-    - the letter x denotes the item has been completed the letter o denotes the task as incomplete
-    - 2 denotes the priority of the item
-    - _yet another task_ denotes the details of the agenda
+```
+p task
+```
+
+where `p` is the priority ( priority will be a number) and `task` is the task description.  
+Here is an example file that has 2 items.
+
+\*\*
+Priority denotes how important a task is, if it is a high priority task, it should be completed earlier. Priority is denoted using an integer, the lower the number, the higher the priority.
+
+```
+1 Buy milk
+2 Complete the project
+```
+
+3. Completed tasks are writted to a completed.txt file. Each task occupies a single line in this file. Each line in the file should be in this format :
+
+```
+p x task
+```
+
+where p is the priority number, x is the current date (UTC/GMT) in yyyy-mm-dd format and task is the task description.
+
+Here is an example file that has 2 items.
+
+```
+1 2021-10-10 Buy milk
+2 2021-10-10 Complete the project
+```
 
 4.  Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
 
-5.  When a new item is created with the priority of an existing item, the priority of the existing item is incremented.
+5.  When a new item is created with the priority of an existing item, the priority of the existing item should be incremented.
 
 6.  There shall never be 2 incomplete tasks with the same priority
 
-The application must open the file list.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
+The application must open the files tasks.txt and completed.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
+
+7. The files should always be sorted in order of the priority, ie, the task with the highest priority should be first item in the file.
 
 ```
 $ cd /path/to/plans
@@ -113,7 +136,7 @@ $ ./plist help
 Usage :-
 $ ./plist 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
 $ ./plist ls                   # Show incomplete priority list items sorted by priority in ascending order
-$ ./plist del                  # PRIORITY_NUMBER # Delete the incomplete item with the given PRIORITY_NUMBER
+$ ./plist del PRIORITY_NUMBER  # Delete the incomplete item with the given priority number
 $ ./plist done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
 $ ./plist help                 # Show usage
 $ ./plist report               # Statistics
@@ -122,6 +145,14 @@ $ ./plist report               # Statistics
 ### 2. List all pending items
 
 Use the ls command to see all the items that are not yet complete, in ascending order of priority.
+
+Every item should be printed on a new line. with the following format
+
+```
+[priority] [task]
+```
+
+Example:
 
 ```
 $ ./plist ls
@@ -140,7 +171,7 @@ Added task: "the thing i need to do" with priority 5
 
 ### 4. Delete an item
 
-Use the del command to remove an item by its number.
+Use the del command to remove an item by its priority.
 
 ```
 $ ./plist del 3
