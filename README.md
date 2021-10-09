@@ -34,13 +34,13 @@ To create a symbolic link on Windows, you'll need to run either the Windows Comm
 **Command Prompt:**
 
 ```
-> mklink todo todo.bat
+> mklink tasks tasks.bat
 ```
 
 **Powershell:**
 
 ```
-> cmd /c mklink todo todo.bat
+> cmd /c mklink tasks tasks.bat
 ```
 
 #### On \*nix:
@@ -48,7 +48,7 @@ To create a symbolic link on Windows, you'll need to run either the Windows Comm
 Run the following command in your shell:
 
 ```
-$ ln -s todo.sh todo
+$ ln -s tasks.sh tasks
 ```
 
 ### 4. Try running tests.
@@ -95,16 +95,16 @@ Here is an example file that has 2 items.
 3. Completed tasks are writted to a completed.txt file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
 ```
-p x task
+p task
 ```
 
-where p is the priority number, x is the current date (UTC/GMT) in yyyy-mm-dd format and task is the task description.
+where p is the priority number and task is the task description.
 
 Here is an example file that has 2 items.
 
 ```
-1 2021-10-10 Buy milk
-2 2021-10-10 Complete the project
+1 Buy milk
+2 Complete the project
 ```
 
 4.  Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
