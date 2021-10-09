@@ -1,6 +1,75 @@
-# GDC-SE Admission Task | Priority list
+# Global Digital Corps - Software Engineering Test Problem | Priority list
 
-Build a CLI Priority List that maintains a list of items to be done and in the order of their priorities. The app would use a file to store the persistent data.
+Thanks for applying to the Global Digital Corps!
+
+In this step we want to see how you implement a command-line (CLI) program that lets you manage **ADD_DESCRIPTION_FOR_TASK**
+
+The specification for this problem is written down as tests. Since we haven’t actually implemented anything, the tests are currently failing. You have to solve the problem by implementing the application and getting all the tests to pass.
+
+Here's how it should work when you're done:
+
+**_REPLACE VIDEO _**
+[![Todo-CLI](https://res.cloudinary.com/sv-co/image/upload/v1607935139/fullstack-CEF/Todo-CLI/play-video-demo_fp50wp.png)](https://vimeo.com/490621534)
+
+## Getting started
+
+> Language specific intro goes in here
+
+## Run Automated Tests
+
+### 1. Install Node.js
+
+You need to have npm installed in your computer for this problem. It comes with Node.js and you can get it by installing Node from https://nodejs.org/en/
+
+### 2. Install dependencies
+
+Run `npm install` to install all dependencies.
+
+### 3. Create Create symbolic link to the executable file
+
+#### On Windows
+
+To create a symbolic link on Windows, you'll need to run either the Windows Command Prompt, or Windows Powershell **with administrator privileges**. To do so, right-click on the icon for Command Prompt, or Powershell, and choose the _"Run as Administrator"_ option.
+
+**Command Prompt:**
+
+```
+> mklink todo todo.bat
+```
+
+**Powershell:**
+
+```
+> cmd /c mklink todo todo.bat
+```
+
+#### On \*nix:
+
+Run the following command in your shell:
+
+```
+$ ln -s todo.sh todo
+```
+
+### 4. Try running tests.
+
+Now run `npm test` and you will see all the tests failing. As you fill in each functionality, you can re-run the tests to see them passing one by one.
+
+## A Note about `/` for Windows Users
+
+In the following sections, you'll see many commands prefixed with `./`, or paths containing the `/` (forward-slash) character.
+
+If you're using the Windows _Command Prompt_, then you'll need to replace `/` with `\` (back-slash) for these commands and paths to work as expected.
+
+On Windows _Powershell_, these substitutions are not required.
+
+## Known Issues
+
+A few notes to help you avoid any hiccups while implementing the programming challenge:
+
+1. If you are on Windows, you might have difficulty getting the tests to pass because of newline UTF encoding issues. If you get stuck, please [refer to the thread here](https://github.com/nseadlc-2020/package-todo-cli-task/issues/12).
+
+2. In Windows machines, the `make` command might not exist and can prevent you from running the tests. This can be fixed [by using WSL, or installing MinGW, among other options](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows).
 
 ## Specification
 
@@ -39,22 +108,15 @@ The application should look for the text files in `/path/to/plans`, since that i
 
 Executing the command without any arguments, or with a single argument help prints the CLI usage.
 
-$ ./plist help
-
-Usage :-
-
 ```
-$ ./plist 2 hello world # Add a new item with priority 2 and text "hello world" to the list
-
-$ ./plist ls # Show incomplete priority list items sorted by priority in ascending order
-
-$ ./plist del PRIORITY_NUMBER # Delete the incomplete item with the given PRIORITY_NUMBER
-
+$ ./plist help
+Usage :-
+$ ./plist 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
+$ ./plist ls                   # Show incomplete priority list items sorted by priority in ascending order
+$ ./plist del                  # PRIORITY_NUMBER # Delete the incomplete item with the given PRIORITY_NUMBER
 $ ./plist done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
-
-$ ./plist help # Show usage
-
-$ ./plist report # Statistics
+$ ./plist help                 # Show usage
+$ ./plist report               # Statistics
 ```
 
 ### 2. List all pending items
@@ -63,9 +125,6 @@ Use the ls command to see all the items that are not yet complete, in ascending 
 
 ```
 $ ./plist ls
-```
-
-```
 [2] change light bulb
 [5] water the plants
 ```
@@ -76,9 +135,6 @@ Use the add command. The text of the task should be enclosed within double quote
 
 ```
 $ ./plist add 5 "the thing i need to do"
-```
-
-```
 Added task: "the thing i need to do" with priority 5
 ```
 
@@ -88,9 +144,6 @@ Use the del command to remove an item by its number.
 
 ```
 $ ./plist del 3
-```
-
-```
 Deleted item with priority 3
 ```
 
@@ -98,9 +151,6 @@ Attempting to delete a non-existent item should display an error message.
 
 ```
 $ ./plist del 5
-```
-
-```
 Error: item with priority 5 does not exist. Nothing deleted.
 ```
 
@@ -110,9 +160,6 @@ Use the done command to mark an item as completed by its priority number.
 
 ```
 $ ./plist done 1
-```
-
-```
 Marked item as done.
 ```
 
@@ -120,9 +167,6 @@ Attempting to mark a non-existed item as completed will display an error message
 
 ```
 $ ./plist done 5
-```
-
-```
 Error: no incomplete item with priority 5 exists.
 ```
 
@@ -132,15 +176,12 @@ Show the number of complete and incomplete items in the list. and the complete a
 
 ```
 $ ./plist report
-```
-
-```
 Pending : 2
-1 this is a pending task
-4 this is a pending task with priority 4
+- 1 this is a pending task
+- 4 this is a pending task with priority 4
 
 Completed : 3
-completed task
-another completed task
-yet another completed task
+- completed task
+- another completed task
+- yet another completed task
 ```
