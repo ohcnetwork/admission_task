@@ -73,7 +73,7 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 
 ## Specification
 
-1.  The app can be run in the console with `./todo`.
+1.  The app can be run in the console with `./tasks`.
 
 2.  The app should read from and write to a tasks.txt text file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
@@ -81,11 +81,11 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 p task
 ```
 
-where `p` is the priority ( priority will be a number) and `task` is the task description.  
-Here is an example file that has 2 items.
+where `p` is the priority ( priority will be a number) and `task` is the task description.
 
-\*\*
-Priority denotes how important a task is, if it is a high priority task, it should be completed earlier. Priority is denoted using an integer, the lower the number, the higher the priority.
+> Priority denotes how important a task is, if it is a high priority task, it should be completed earlier. Priority is denoted using an integer, the lower the number, the higher the priority.
+
+Here is an example file that has 2 items.
 
 ```
 1 Buy milk
@@ -120,7 +120,7 @@ The application must open the files tasks.txt and completed.txt from where the a
 ```
 $ cd /path/to/plans
 
-$ /path/to/apps/plist ls
+$ /path/to/apps/tasks ls
 ```
 
 The application should look for the text files in `/path/to/plans`, since that is the user’s current directory.
@@ -132,14 +132,14 @@ The application should look for the text files in `/path/to/plans`, since that i
 Executing the command without any arguments, or with a single argument help prints the CLI usage.
 
 ```
-$ ./plist help
+$ ./tasks help
 Usage :-
-$ ./plist 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
-$ ./plist ls                   # Show incomplete priority list items sorted by priority in ascending order
-$ ./plist del PRIORITY_NUMBER  # Delete the incomplete item with the given priority number
-$ ./plist done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
-$ ./plist help                 # Show usage
-$ ./plist report               # Statistics
+$ ./tasks 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
+$ ./tasks ls                   # Show incomplete priority list items sorted by priority in ascending order
+$ ./tasks del PRIORITY_NUMBER  # Delete the incomplete item with the given priority number
+$ ./tasks done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
+$ ./tasks help                 # Show usage
+$ ./tasks report               # Statistics
 ```
 
 ### 2. List all pending items
@@ -155,7 +155,7 @@ Every item should be printed on a new line. with the following format
 Example:
 
 ```
-$ ./plist ls
+$ ./tasks ls
 [2] change light bulb
 [5] water the plants
 ```
@@ -165,7 +165,7 @@ $ ./plist ls
 Use the add command. The text of the task should be enclosed within double quotes (otherwise only the first word is considered as the item text, and the remaining words are treated as different arguments).
 
 ```
-$ ./plist add 5 "the thing i need to do"
+$ ./tasks add 5 "the thing i need to do"
 Added task: "the thing i need to do" with priority 5
 ```
 
@@ -174,14 +174,14 @@ Added task: "the thing i need to do" with priority 5
 Use the del command to remove an item by its priority.
 
 ```
-$ ./plist del 3
+$ ./tasks del 3
 Deleted item with priority 3
 ```
 
 Attempting to delete a non-existent item should display an error message.
 
 ```
-$ ./plist del 5
+$ ./tasks del 5
 Error: item with priority 5 does not exist. Nothing deleted.
 ```
 
@@ -190,14 +190,14 @@ Error: item with priority 5 does not exist. Nothing deleted.
 Use the done command to mark an item as completed by its priority number.
 
 ```
-$ ./plist done 1
+$ ./tasks done 1
 Marked item as done.
 ```
 
 Attempting to mark a non-existed item as completed will display an error message.
 
 ```
-$ ./plist done 5
+$ ./tasks done 5
 Error: no incomplete item with priority 5 exists.
 ```
 
@@ -206,7 +206,7 @@ Error: no incomplete item with priority 5 exists.
 Show the number of complete and incomplete items in the list. and the complete and incomplete items grouped together.
 
 ```
-$ ./plist report
+$ ./tasks report
 Pending : 2
 - 1 this is a pending task
 - 4 this is a pending task with priority 4
