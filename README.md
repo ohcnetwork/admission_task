@@ -134,7 +134,7 @@ Executing the command without any arguments, or with a single argument help prin
 ```
 $ ./tasks help
 Usage :-
-$ ./tasks 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
+$ ./tasks add 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
 $ ./tasks ls                   # Show incomplete priority list items sorted by priority in ascending order
 $ ./tasks del PRIORITY_NUMBER  # Delete the incomplete item with the given priority number
 $ ./tasks done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
