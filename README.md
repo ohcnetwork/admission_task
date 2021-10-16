@@ -95,27 +95,25 @@ Here is an example file that has 2 items.
 3. Completed tasks are writted to a completed.txt file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
 ```
-p task
+task
 ```
 
-where p is the priority number and task is the task description.
+where task is the task description.
 
 Here is an example file that has 2 items.
 
 ```
-1 Buy milk
-2 Complete the project
+Buy milk
+Complete the project
 ```
 
 4.  Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
 
-5.  When a new item is created with the priority of an existing item, the priority of the existing item should be incremented.
-
-6.  There shall never be 2 incomplete tasks with the same priority
+5.  If two tasks have the same priority, the task that was added first should be displayed first.
 
 The application must open the files tasks.txt and completed.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
 
-7. The files should always be sorted in order of the priority, ie, the task with the highest priority should be first item in the file.
+6. The files should always be sorted in order of the priority, ie, the task with the highest priority should be first item in the file.
 
 ```
 $ cd /path/to/plans
@@ -134,10 +132,10 @@ Executing the command without any arguments, or with a single argument help prin
 ```
 $ ./tasks help
 Usage :-
-$ ./tasks add 2 hello world        # Add a new item with priority 2 and text "hello world" to the list
+$ ./tasks add 2 hello world    # Add a new item with priority 2 and text "hello world" to the list
 $ ./tasks ls                   # Show incomplete priority list items sorted by priority in ascending order
-$ ./tasks del PRIORITY_NUMBER  # Delete the incomplete item with the given priority number
-$ ./tasks done PRIORITY_NUMBER # Mark the incomplete item with the given PRIORITY_NUMBER as complete
+$ ./tasks del INDEX            # Delete the incomplete item with the given index
+$ ./tasks done INDEX           # Mark the incomplete item with the given index as complete
 $ ./tasks help                 # Show usage
 $ ./tasks report               # Statistics
 ```
@@ -149,16 +147,18 @@ Use the ls command to see all the items that are not yet complete, in ascending 
 Every item should be printed on a new line. with the following format
 
 ```
-[priority] [task]
+[index] [task] [priority]
 ```
 
 Example:
 
 ```
 $ ./tasks ls
-[2] change light bulb
-[5] water the plants
+1. change light bulb [2]
+2. water the plants [5]
 ```
+
+index starts from 1, this is used to identify a particular task to complete or delete it.
 
 ### 3. Add a new item
 
@@ -171,23 +171,23 @@ Added task: "the thing i need to do" with priority 5
 
 ### 4. Delete an item
 
-Use the del command to remove an item by its priority.
+Use the del command to remove an item by its index.
 
 ```
 $ ./tasks del 3
-Deleted item with priority 3
+Deleted item with index 3
 ```
 
 Attempting to delete a non-existent item should display an error message.
 
 ```
 $ ./tasks del 5
-Error: item with priority 5 does not exist. Nothing deleted.
+Error: item with index 5 does not exist. Nothing deleted.
 ```
 
 ### 5. Mark a task as completed
 
-Use the done command to mark an item as completed by its priority number.
+Use the done command to mark an item as completed by its index.
 
 ```
 $ ./tasks done 1
@@ -198,7 +198,7 @@ Attempting to mark a non-existed item as completed will display an error message
 
 ```
 $ ./tasks done 5
-Error: no incomplete item with priority 5 exists.
+Error: no incomplete item with index 5 exists.
 ```
 
 ### 6. Generate a report
@@ -208,11 +208,11 @@ Show the number of complete and incomplete items in the list. and the complete a
 ```
 $ ./tasks report
 Pending : 2
-- 1 this is a pending task
-- 4 this is a pending task with priority 4
+1. this is a pending task [1]
+2. this is a pending task with priority [4]
 
 Completed : 3
-- completed task
-- another completed task
-- yet another completed task
+1. completed task
+2. another completed task
+3. yet another completed task
 ```
