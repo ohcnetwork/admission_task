@@ -73,55 +73,55 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 
 ## Specification
 
-1.  The app can be run in the console with `./tasks`.
+1. The app can be run in the console with `./tasks`.
 
-2.  The app should read from and write to a tasks.txt text file. Each task occupies a single line in this file. Each line in the file should be in this format :
+2. The app should read from and write to a tasks.txt text file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
-```
-p task
-```
+   ```
+   p task
+   ```
 
-where `p` is the priority ( priority will be a number) and `task` is the task description.
+   where `p` is the priority ( priority will be a number) and `task` is the task description.
 
-> Priority denotes how important a task is, if it is a high priority task, it should be completed earlier. Priority is denoted using an integer, the lower the number, the higher the priority.
+   > Priority denotes how important a task is, if it is a high priority task, it should be completed earlier. Priority is denoted using an integer, the lower the number, the higher the priority.
 
-Here is an example file that has 2 items.
+   Here is an example file that has 2 items.
 
-```
-1 Buy milk
-2 Complete the project
-```
+   ```
+   1 Buy milk
+   2 Complete the project
+   ```
 
 3. Completed tasks are writted to a completed.txt file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
-```
-task
-```
+   ```
+   task
+   ```
 
-where task is the task description.
+   where task is the task description.
 
-Here is an example file that has 2 items.
+   Here is an example file that has 2 items.
 
-```
-Buy milk
-Complete the project
-```
+   ```
+   Buy milk
+   Complete the project
+   ```
 
-4.  Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
+4. Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
 
-5.  If two tasks have the same priority, the task that was added first should be displayed first.
+5. If two tasks have the same priority, the task that was added first should be displayed first.
 
-The application must open the files tasks.txt and completed.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
+   The application must open the files tasks.txt and completed.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
 
 6. The files should always be sorted in order of the priority, ie, the task with the highest priority should be first item in the file.
 
-```
-$ cd /path/to/plans
+   ```
+   $ cd /path/to/plans
 
-$ /path/to/apps/tasks ls
-```
+   $ /path/to/apps/tasks ls
+   ```
 
-The application should look for the text files in `/path/to/plans`, since that is the user’s current directory.
+   The application should look for the text files in `/path/to/plans`, since that is the user’s current directory.
 
 ## Usage
 
