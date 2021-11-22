@@ -8,19 +8,19 @@ let deleteFile = (path) => {
 };
 
 beforeEach(() => {
-  deleteFile(`${__dirname}/tasks.txt`);
+  deleteFile(`${__dirname}/task.txt`);
   deleteFile(`${__dirname}/completed.txt`);
 });
 
-let tasksTxtCli = (...args) => [`${__dirname}/tasks.sh`, ...args].join(" ");
+let tasksTxtCli = (...args) => [`${__dirname}/task.sh`, ...args].join(" ");
 
 let usage = `Usage :-
-$ ./tasks add 2 hello world     # Add a new item with priority 2 and text "hello world" to the list
-$ ./tasks ls                    # Show incomplete priority list items sorted by priority in ascending order
-$ ./tasks del NUMBER   # Delete the incomplete item with the given priority number
-$ ./tasks done NUMBER  # Mark the incomplete item with the given PRIORITY_NUMBER as complete
-$ ./tasks help                  # Show usage
-$ ./tasks report                # Statistics`;
+$ ./task add 2 hello world     # Add a new item with priority 2 and text "hello world" to the list
+$ ./task ls                    # Show incomplete priority list items sorted by priority in ascending order
+$ ./task del NUMBER   # Delete the incomplete item with the given priority number
+$ ./task done NUMBER  # Mark the incomplete item with the given PRIORITY_NUMBER as complete
+$ ./task help                  # Show usage
+$ ./task report                # Statistics`;
 
 test("prints help when no additional args are provided", () => {
   let received = execSync(tasksTxtCli()).toString("utf8");
