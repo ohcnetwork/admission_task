@@ -17,13 +17,13 @@ To create a symbolic link on Windows, you'll need to run either the Windows Comm
 **Command Prompt:**
 
 ```
-> mklink tasks tasks.bat
+> mklink task task.bat
 ```
 
 **Powershell:**
 
 ```
-> cmd /c mklink tasks tasks.bat
+> cmd /c mklink task task.bat
 ```
 
 #### On \*nix:
@@ -31,7 +31,7 @@ To create a symbolic link on Windows, you'll need to run either the Windows Comm
 Run the following command in your shell:
 
 ```
-$ ln -s tasks.sh tasks
+$ ln -s task.sh task
 ```
 
 ### 4. Try running tests.
@@ -56,9 +56,9 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 
 ## Specification
 
-1. The app can be run in the console with `./tasks`.
+1. The app can be run in the console with `./task`.
 
-2. The app should read from and write to a tasks.txt text file. Each task occupies a single line in this file. Each line in the file should be in this format :
+2. The app should read from and write to a task.txt text file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
    ```
    p task
@@ -75,7 +75,7 @@ A few notes to help you avoid any hiccups while implementing the programming cha
    2 Complete the project
    ```
 
-3. Completed tasks are writted to a completed.txt file. Each task occupies a single line in this file. Each line in the file should be in this format :
+3. Completed task are writted to a completed.txt file. Each task occupies a single line in this file. Each line in the file should be in this format :
 
    ```
    task
@@ -92,16 +92,16 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 
 4. Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
 
-5. If two tasks have the same priority, the task that was added first should be displayed first.
+5. If two task have the same priority, the task that was added first should be displayed first.
 
-   The application must open the files tasks.txt and completed.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
+   The application must open the files task.txt and completed.txt from where the app is run, and not where the app is located. For example, if we invoke the app like this:
 
 6. The files should always be sorted in order of the priority, ie, the task with the highest priority should be first item in the file.
 
    ```
    $ cd /path/to/plans
 
-   $ /path/to/apps/tasks ls
+   $ /path/to/apps/task ls
    ```
 
    The application should look for the text files in `/path/to/plans`, since that is the user’s current directory.
@@ -113,14 +113,14 @@ A few notes to help you avoid any hiccups while implementing the programming cha
 Executing the command without any arguments, or with a single argument help prints the CLI usage.
 
 ```
-$ ./tasks help
+$ ./task help
 Usage :-
-$ ./tasks add 2 hello world    # Add a new item with priority 2 and text "hello world" to the list
-$ ./tasks ls                   # Show incomplete priority list items sorted by priority in ascending order
-$ ./tasks del INDEX            # Delete the incomplete item with the given index
-$ ./tasks done INDEX           # Mark the incomplete item with the given index as complete
-$ ./tasks help                 # Show usage
-$ ./tasks report               # Statistics
+$ ./task add 2 hello world    # Add a new item with priority 2 and text "hello world" to the list
+$ ./task ls                   # Show incomplete priority list items sorted by priority in ascending order
+$ ./task del INDEX            # Delete the incomplete item with the given index
+$ ./task done INDEX           # Mark the incomplete item with the given index as complete
+$ ./task help                 # Show usage
+$ ./task report               # Statistics
 ```
 
 ### 2. List all pending items
@@ -136,7 +136,7 @@ Every item should be printed on a new line. with the following format
 Example:
 
 ```
-$ ./tasks ls
+$ ./task ls
 1. change light bulb [2]
 2. water the plants [5]
 ```
@@ -148,7 +148,7 @@ index starts from 1, this is used to identify a particular task to complete or d
 Use the add command. The text of the task should be enclosed within double quotes (otherwise only the first word is considered as the item text, and the remaining words are treated as different arguments).
 
 ```
-$ ./tasks add 5 "the thing i need to do"
+$ ./task add 5 "the thing i need to do"
 Added task: "the thing i need to do" with priority 5
 ```
 
@@ -157,14 +157,14 @@ Added task: "the thing i need to do" with priority 5
 Use the del command to remove an item by its index.
 
 ```
-$ ./tasks del 3
+$ ./task del 3
 Deleted item with index 3
 ```
 
 Attempting to delete a non-existent item should display an error message.
 
 ```
-$ ./tasks del 5
+$ ./task del 5
 Error: item with index 5 does not exist. Nothing deleted.
 ```
 
@@ -173,14 +173,14 @@ Error: item with index 5 does not exist. Nothing deleted.
 Use the done command to mark an item as completed by its index.
 
 ```
-$ ./tasks done 1
+$ ./task done 1
 Marked item as done.
 ```
 
 Attempting to mark a non-existed item as completed will display an error message.
 
 ```
-$ ./tasks done 5
+$ ./task done 5
 Error: no incomplete item with index 5 exists.
 ```
 
@@ -189,7 +189,7 @@ Error: no incomplete item with index 5 exists.
 Show the number of complete and incomplete items in the list. and the complete and incomplete items grouped together.
 
 ```
-$ ./tasks report
+$ ./task report
 Pending : 2
 1. this is a pending task [1]
 2. this is a pending task with priority [4]
