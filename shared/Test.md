@@ -90,7 +90,7 @@ A few notes to help you avoid any hiccups while implementing the programming cha
    Complete the project
    ```
 
-4. Priority can be any integer _greater than_ or _equal to_ 1. 1 being the highest priority
+4. Priority can be any integer _greater than_ or _equal to_ 0. 0 being the highest priority
 
 5. If two task have the same priority, the task that was added first should be displayed first.
 
