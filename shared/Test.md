@@ -105,6 +105,8 @@ A few notes to help you avoid any hiccups while implementing the programming cha
    ```
 
    The application should look for the text files in `/path/to/plans`, since that is the user’s current directory.
+   
+> Please note that the programming task could be completed without the use of any additional packages
 
 ## Usage
 
