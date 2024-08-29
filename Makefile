@@ -19,7 +19,7 @@ all: clean $(TARGETS)
 
 c: _build
 	cp -rf c _build
-	cp -arf shared/. _build/c
+	cp -af shared/. _build/c
 	# Append C compiled binary to `task.sh`
 	# The $@ will pass through CLI args to the binary
 	echo \\n./task.out \"$$\@\" >> _build/c/task.sh
@@ -32,7 +32,7 @@ c: _build
 
 cpp: _build
 	cp -rf cpp _build
-	cp -arf shared/. _build/cpp
+	cp -af shared/. _build/cpp
 	# Append C++ compiled binary to `task.sh`
 	# The $@ will pass through CLI args to the binary
 	echo \\n./task.out \"$$\@\" >> _build/cpp/task.sh
@@ -45,7 +45,7 @@ cpp: _build
 
 javascript: _build
 	cp -rf javascript _build
-	cp -arf shared/. _build/javascript
+	cp -af shared/. _build/javascript
 	# Append node command to `task.sh`
 	# The $@ will pass through CLI args to the node executable
 	echo \\nnode task.js \"$$\@\" >> _build/javascript/task.sh
@@ -58,35 +58,35 @@ javascript: _build
 
 ruby: _build
 	cp -rf ruby _build
-	cp -arf shared/. _build/ruby
+	cp -af shared/. _build/ruby
 	# Append ruby command to `task.sh`
-	# The $@ will pass through CLI args to the node executable
+	# The $@ will pass through CLI args to the ruby executable
 	echo \\nruby task.rb \"$$\@\" >> _build/ruby/task.sh
 	echo \\nruby task.rb %1 %2 %3 >> _build/ruby/task.bat
 	cat _build/ruby/Intro.md _build/ruby/getting_started.md _build/ruby/Test.md > _build/ruby/README.md
 	rm _build/ruby/Intro.md _build/ruby/getting_started.md _build/ruby/Test.md
 	cd _build && zip -r --quiet fellowship-ruby.zip ruby -x "node_modules" -x "package-lock.json"
 	rm -rf _build/ruby
-	echo "Created ruby package: fellowship-ruby.zip"
+	echo "Created Ruby package: fellowship-ruby.zip"
 
 python: _build
 	cp -rf python _build
-	cp -arf shared/. _build/python
+	cp -af shared/. _build/python
 	# Append python command to `task.sh`
-	# The $@ will pass through CLI args to the node executable
+	# The $@ will pass through CLI args to the python executable
 	echo \\npython3 task.py \"$$\@\" >> _build/python/task.sh
 	echo \\npython3 task.py %1 %2 %3 >> _build/python/task.bat
 	cat _build/python/Intro.md _build/python/getting_started.md _build/python/Test.md > _build/python/README.md
 	rm _build/python/Intro.md _build/python/getting_started.md _build/python/Test.md
 	cd _build && zip -r --quiet fellowship-python.zip python -x "node_modules" -x "package-lock.json"
 	rm -rf _build/python
-	echo "Created python package: fellowship-python.zip"
+	echo "Created Python package: fellowship-python.zip"
 
 java: _build
 	cp -rf java _build
-	cp -arf shared/. _build/java
-	# Append C++ compiled binary to `task.sh`
-	# The $@ will pass through CLI args to the binary
+	cp -af shared/. _build/java
+	# Append java command to `task.sh`
+	# The $@ will pass through CLI args to the java executable
 	echo \\njava Task \"$$\@\" >> _build/java/task.sh
 	echo \\njava Task %1 %2 %3 >> _build/java/task.bat
 	cat _build/java/Intro.md _build/java/getting_started.md _build/java/Test.md > _build/java/README.md
@@ -101,3 +101,4 @@ _build:
 clean:
 	rm -rf _build
 	echo "Removed previous artefacts from _build/ directory."
+	
